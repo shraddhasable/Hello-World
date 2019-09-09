@@ -32,7 +32,7 @@ node {
         }
 	stage('Production') {
         
-            echo 'I only execute on the master branch'
+            input 'Deployment To Server '
             bat label: '', script: '''copy D:\\Jenkins\\workspace\\JenkinsWar\\target\\JenkinsWar.war  D:\\apache-tomcat-8.5.12\\webapps'''
 
         
