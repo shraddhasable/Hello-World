@@ -1,10 +1,41 @@
-pipeline {
-    agent { docker 'maven:3.3.3' }
-    stages {
-        stage('build') {
-            steps {
-                bat 'mvn --version'
-            }
+node {
+    stage('Build /Development') {
+        
+            echo 'I only execute on the master branch'
+			dir('D:\\Jenkins\\workspace\\JenkinsWar') {
+            bat label: '', script: 'mvn compile'
+
+		}
+        
         }
-    }
+		
+	stage('Pre-Production') {
+        
+            echo 'I only execute on the master branch'
+            dir('D:\\Jenkins\\workspace\\JenkinsWar') {
+            bat label: '', script: 'mvn package'
+
+		}
+
+
+        
+        }
+	stage('Testing') {
+        
+            echo 'I only execute on the master branch'
+            dir('D:\\Jenkins\\workspace\\JenkinsWar') {
+            bat label: '', script: 'mvn test'
+
+		}
+
+        
+        }
+	stage('Production') {
+        
+            echo 'I only execute on the master branch'
+            bat label: '', script: '''copy D:\\Jenkins\\workspace\\JenkinsWar\\target\\JenkinsWar.war  D:\\apache-tomcat-8.5.12\\webapps'''
+
+        
+        }
+    
 }
