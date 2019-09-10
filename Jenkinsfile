@@ -1,16 +1,15 @@
 node {
-    stage('Build /Development') {
+    	stage('Build /Development') {
         
-            echo 'I only execute on the master branch'
-	    
-	    dir('path') {
+            echo 'I only execute on the master branch'	    
+	    dir('D:\\Jenkins\\workspace\\JenkinsWar') {
             bat label: '', script: 'mvn compile'
 
 		}
         
         }
 		
-	stage('Pre-Production') {
+   	stage('Pre-Production') {
         
             echo 'I only execute on the master branch'
             dir('D:\\Jenkins\\workspace\\JenkinsWar') {
