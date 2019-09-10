@@ -2,7 +2,8 @@ node {
     stage('Build /Development') {
         
             echo 'I only execute on the master branch'
-	    dir('D:\\Jenkins\\workspace\\JenkinsWar') {
+	    
+	    dir('path') {
             bat label: '', script: 'mvn compile'
 
 		}
