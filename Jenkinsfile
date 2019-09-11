@@ -1,13 +1,25 @@
 node {
     	stage('Build /Development') {
+        fileExists 'properties.txt'
+        bat label: '', script: 'set /p Build=<properties.txt'
+        bat label: '', script: 'cd %Build%'
         
-            echo 'I only execute on the master branch'	    
-	    dir('D:\\Jenkins\\workspace\\JenkinsWar') {
-            bat label: '', script: 'mvn compile'
-
-		}
         
+        bat label: '', script: 'mvn package'
+            
         }
+        bat label: '', script: 'for /f "delims=" %%x in (D:/Jenkins/workspace/Hello-World-Pipeline/properties.txt) do set Build=%%x'
+        dir('target/')
+        {
+            bat label: '', script: 'copy "HelloWorld.war"  "D:/apache-tomcat-8.5.12/webapps"'
+ 
+        }
+        
+        
+    	
+    
+
+
 		
    	stage('Pre-Production') {
         
